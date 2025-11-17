@@ -1,0 +1,65 @@
+<?php
+
+return [
+	'db_migration_MigrationParameter' => [
+		'extends' => 'GrtObject',
+		'properties' => [
+			'grt::StringRef' => '_caption',
+			'grt::StringRef' => '_defaultValue',
+			'grt::StringRef' => '_description',
+			'grt::StringRef' => '_paramType',
+		],
+	],
+	'db_migration_DatatypeMapping' => [
+		'extends' => 'GrtObject',
+		'properties' => [
+			'grt::IntegerRef' => '_isUnsigned',
+			'grt::IntegerRef' => '_length',
+			'grt::IntegerRef' => '_lengthConditionFrom',
+			'grt::IntegerRef' => '_lengthConditionTo',
+			'grt::IntegerRef' => '_precision',
+			'grt::IntegerRef' => '_precisionConditionFrom',
+			'grt::IntegerRef' => '_precisionConditionTo',
+			'grt::IntegerRef' => '_scale',
+			'grt::IntegerRef' => '_scaleConditionFrom',
+			'grt::IntegerRef' => '_scaleConditionTo',
+			'grt::StringRef' => '_sourceDatatypeName',
+			'grt::StringRef' => '_targetDatatypeName',
+		],
+	],
+	'db_migration_DBPreferences' => [
+		'extends' => 'GrtObject',
+		'properties' => [
+			'grt::DictRef' => '_characterSetMapping',
+			'grt::ListRef<db_migration_DatatypeMapping>' => '_datatypeMapping',
+			'grt::DictRef' => '_defaultValueMapping',
+			'grt::DictRef' => '_options',
+			'db_mgmt_RdbmsRef' => '_sourceRdbms',
+		],
+	],
+	'db_migration_Migration' => [
+		'extends' => 'GrtObject',
+		'properties' => [
+			'grt::DictRef' => '_applicationData',
+			'grt::ListRef<GrtLogObject>' => '_creationLog',
+			'grt::DictRef' => '_dataBulkTransferParams',
+			'grt::ListRef<GrtLogObject>' => '_dataTransferLog',
+			'grt::DictRef' => '_defaultColumnValueMappings',
+			'grt::ListRef<db_migration_DatatypeMapping>' => '_genericDatatypeMappings',
+			'grt::StringListRef' => '_ignoreList',
+			'grt::ListRef<GrtLogObject>' => '_migrationLog',
+			'grt::DictRef' => '_objectCreationParams',
+			'grt::DictRef' => '_objectMigrationParams',
+			'grt::StringListRef' => '_selectedSchemataNames',
+			'db_CatalogRef' => '_sourceCatalog',
+			'db_mgmt_ConnectionRef' => '_sourceConnection',
+			'GrtVersionRef' => '_sourceDBVersion',
+			'grt::ListRef<GrtObject>' => '_sourceObjects',
+			'grt::StringListRef' => '_sourceSchemataNames',
+			'db_CatalogRef' => '_targetCatalog',
+			'db_mgmt_ConnectionRef' => '_targetConnection',
+			'GrtVersionRef' => '_targetDBVersion',
+			'GrtVersionRef' => '_targetVersion',
+		],
+	],
+];

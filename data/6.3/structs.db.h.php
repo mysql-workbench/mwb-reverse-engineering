@@ -1,0 +1,337 @@
+<?php
+
+return [
+	'db_DatabaseSyncObject' => [
+		'extends' => 'GrtObject',
+		'properties' => [
+			'_alterDirection' => 'grt::IntegerRef',
+			'_changed' => 'grt::IntegerRef',
+			'_children' => 'grt::ListRef<db_DatabaseSyncObject>',
+			'_dbObject' => 'GrtNamedObjectRef',
+			'_modelObject' => 'GrtNamedObjectRef',
+			'_syncLog' => 'grt::ListRef<GrtLogObject>',
+		],
+	],
+	'db_DatabaseSync' => [
+		'extends' => 'GrtObject',
+		'properties' => [
+			'_changeTree' => 'db_DatabaseSyncObjectRef',
+			'_dbCatalog' => 'db_CatalogRef',
+		],
+	],
+	'db_Script' => [
+		'extends' => 'GrtStoredNote',
+		'properties' => [
+			'_forwardEngineerScriptPosition' => 'grt::StringRef',
+			'_synchronizeScriptPosition' => 'grt::StringRef',
+		],
+	],
+	'db_CharacterSet' => [
+		'extends' => 'GrtObject',
+		'properties' => [
+			'_collations' => 'grt::StringListRef',
+			'_defaultCollation' => 'grt::StringRef',
+			'_description' => 'grt::StringRef',
+		],
+	],
+	'db_ForeignKey' => [
+		'extends' => 'GrtNamedObject',
+		'properties' => [
+			'owned_list_item_added' => '',
+			'owned_list_item_removed' => '',
+			'_columns' => 'grt::ListRef<db_Column>',
+			'_customData' => 'grt::DictRef',
+			'_deferability' => 'grt::IntegerRef',
+			'_deleteRule' => 'grt::StringRef',
+			'_index' => 'db_IndexRef',
+			'_mandatory' => 'grt::IntegerRef',
+			'_many' => 'grt::IntegerRef',
+			'_modelOnly' => 'grt::IntegerRef',
+			'_referencedColumns' => 'grt::ListRef<db_Column>',
+			'_referencedMandatory' => 'grt::IntegerRef',
+			'_referencedTable' => 'db_TableRef',
+			'_updateRule' => 'grt::StringRef',
+		],
+	],
+	'db_IndexColumn' => [
+		'extends' => 'GrtObject',
+		'properties' => [
+			'_columnLength' => 'grt::IntegerRef',
+			'_comment' => 'grt::StringRef',
+			'_descend' => 'grt::IntegerRef',
+			'_referencedColumn' => 'db_ColumnRef',
+		],
+	],
+	'db_CheckConstraint' => [
+		'extends' => 'GrtNamedObject',
+		'properties' => [
+			'_searchCondition' => 'grt::StringRef',
+		],
+	],
+	'db_UserDatatype' => [
+		'extends' => 'GrtObject',
+		'properties' => [
+			'_actualType' => 'db_SimpleDatatypeRef',
+			'_flags' => 'grt::StringRef',
+			'_sqlDefinition' => 'grt::StringRef',
+		],
+	],
+	'db_SimpleDatatype' => [
+		'extends' => 'GrtObject',
+		'properties' => [
+			'_characterMaximumLength' => 'grt::IntegerRef',
+			'_characterOctetLength' => 'grt::IntegerRef',
+			'_dateTimePrecision' => 'grt::IntegerRef',
+			'_flags' => 'grt::StringListRef',
+			'_group' => 'db_DatatypeGroupRef',
+			'_needsQuotes' => 'grt::IntegerRef',
+			'_numericPrecision' => 'grt::IntegerRef',
+			'_numericPrecisionRadix' => 'grt::IntegerRef',
+			'_numericScale' => 'grt::IntegerRef',
+			'_parameterFormatType' => 'grt::IntegerRef',
+			'_synonyms' => 'grt::StringListRef',
+			'_validity' => 'grt::StringRef',
+		],
+	],
+	'db_DatatypeGroup' => [
+		'extends' => 'GrtObject',
+		'properties' => [
+			'_caption' => 'grt::StringRef',
+			'_description' => 'grt::StringRef',
+		],
+	],
+	'db_Column' => [
+		'extends' => 'GrtNamedObject',
+		'properties' => [
+			'_characterSetName' => 'grt::StringRef',
+			'_checks' => 'grt::ListRef<db_CheckConstraint>',
+			'_collationName' => 'grt::StringRef',
+			'_datatypeExplicitParams' => 'grt::StringRef',
+			'_defaultValue' => 'grt::StringRef',
+			'_defaultValueIsNull' => 'grt::IntegerRef',
+			'_flags' => 'grt::StringListRef',
+			'_isNotNull' => 'grt::IntegerRef',
+			'_length' => 'grt::IntegerRef',
+			'_precision' => 'grt::IntegerRef',
+			'_scale' => 'grt::IntegerRef',
+			'_simpleType' => 'db_SimpleDatatypeRef',
+			'_structuredType' => 'db_StructuredDatatypeRef',
+			'_userType' => 'db_UserDatatypeRef',
+		],
+	],
+	'db_RolePrivilege' => [
+		'extends' => 'GrtObject',
+		'properties' => [
+			'_databaseObject' => 'db_DatabaseObjectRef',
+			'_databaseObjectName' => 'grt::StringRef',
+			'_databaseObjectType' => 'grt::StringRef',
+			'_privileges' => 'grt::StringListRef',
+		],
+	],
+	'db_Catalog' => [
+		'extends' => 'GrtNamedObject',
+		'properties' => [
+			'_characterSets' => 'grt::ListRef<db_CharacterSet>',
+			'_customData' => 'grt::DictRef',
+			'_defaultCharacterSetName' => 'grt::StringRef',
+			'_defaultCollationName' => 'grt::StringRef',
+			'_defaultSchema' => 'db_SchemaRef',
+			'_logFileGroups' => 'grt::ListRef<db_LogFileGroup>',
+			'_roles' => 'grt::ListRef<db_Role>',
+			'_schemata' => 'grt::ListRef<db_Schema>',
+			'_serverLinks' => 'grt::ListRef<db_ServerLink>',
+			'_simpleDatatypes' => 'grt::ListRef<db_SimpleDatatype>',
+			'_tablespaces' => 'grt::ListRef<db_Tablespace>',
+			'_userDatatypes' => 'grt::ListRef<db_UserDatatype>',
+			'_users' => 'grt::ListRef<db_User>',
+			'_version' => 'GrtVersionRef',
+		],
+	],
+	'db_DatabaseObject' => [
+		'extends' => 'GrtNamedObject',
+		'properties' => [
+			'_commentedOut' => 'grt::IntegerRef',
+			'_createDate' => 'grt::StringRef',
+			'_customData' => 'grt::DictRef',
+			'_lastChangeDate' => 'grt::StringRef',
+			'_modelOnly' => 'grt::IntegerRef',
+			'_temp_sql' => 'grt::StringRef',
+		],
+	],
+	'db_Sequence' => [
+		'extends' => 'db_DatabaseObject',
+		'properties' => [
+			'_cacheSize' => 'grt::StringRef',
+			'_cycleFlag' => 'grt::IntegerRef',
+			'_incrementBy' => 'grt::StringRef',
+			'_lastNumber' => 'grt::StringRef',
+			'_maxValue' => 'grt::StringRef',
+			'_minValue' => 'grt::StringRef',
+			'_orderFlag' => 'grt::IntegerRef',
+			'_startValue' => 'grt::StringRef',
+		],
+	],
+	'db_Synonym' => [
+		'extends' => 'db_DatabaseObject',
+		'properties' => [
+			'_isPublic' => 'grt::IntegerRef',
+			'_referencedObject' => 'db_DatabaseObjectRef',
+			'_referencedObjectName' => 'grt::StringRef',
+			'_referencedSchemaName' => 'grt::StringRef',
+		],
+	],
+	'db_RoutineGroup' => [
+		'extends' => 'db_DatabaseObject',
+		'properties' => [
+			'_signal_contentChanged' => 'signals2::signal<>',
+			'_routineExpandedHeights' => 'grt::IntegerListRef',
+			'_routineExpandedStates' => 'grt::IntegerListRef',
+			'_routines' => 'grt::ListRef<db_Routine>',
+		],
+	],
+	'db_Index' => [
+		'extends' => 'db_DatabaseObject',
+		'properties' => [
+			'_columns' => 'grt::ListRef<db_IndexColumn>',
+			'_deferability' => 'grt::IntegerRef',
+			'_indexType' => 'grt::StringRef',
+			'_isPrimary' => 'grt::IntegerRef',
+			'_unique' => 'grt::IntegerRef',
+		],
+	],
+	'db_StructuredDatatype' => [
+		'extends' => 'db_DatabaseObject',
+		'properties' => [
+			'_distinctTypes' => 'grt::ListRef<db_Column>',
+			'_parentType' => 'db_StructuredDatatypeRef',
+		],
+	],
+	'db_Table' => [
+		'extends' => 'db_DatabaseObject',
+		'properties' => [
+			'_signal_refreshDisplay' => 'signals2::signal<>',
+			'_signal_foreignKeyChanged' => 'signals2::signal<>',
+			'_columns' => 'grt::ListRef<db_Column>',
+			'_foreignKeys' => 'grt::ListRef<db_ForeignKey>',
+			'_indices' => 'grt::ListRef<db_Index>',
+			'_isStub' => 'grt::IntegerRef',
+			'_isSystem' => 'grt::IntegerRef',
+			'_isTemporary' => 'grt::IntegerRef',
+			'_primaryKey' => 'db_IndexRef',
+			'_temporaryScope' => 'grt::StringRef',
+			'_triggers' => 'grt::ListRef<db_Trigger>',
+		],
+	],
+	'db_ServerLink' => [
+		'extends' => 'db_DatabaseObject',
+		'properties' => [
+			'_host' => 'grt::StringRef',
+			'_ownerUser' => 'grt::StringRef',
+			'_password' => 'grt::StringRef',
+			'_port' => 'grt::StringRef',
+			'_schema' => 'grt::StringRef',
+			'_socket' => 'grt::StringRef',
+			'_user' => 'grt::StringRef',
+			'_wrapperName' => 'grt::StringRef',
+		],
+	],
+	'db_Schema' => [
+		'extends' => 'db_DatabaseObject',
+		'properties' => [
+			'_signal_refreshDisplay' => 'signals2::signal<>',
+			'_defaultCharacterSetName' => 'grt::StringRef',
+			'_defaultCollationName' => 'grt::StringRef',
+			'_events' => 'grt::ListRef<db_Event>',
+			'_routineGroups' => 'grt::ListRef<db_RoutineGroup>',
+			'_routines' => 'grt::ListRef<db_Routine>',
+			'_sequences' => 'grt::ListRef<db_Sequence>',
+			'_structuredTypes' => 'grt::ListRef<db_StructuredDatatype>',
+			'_synonyms' => 'grt::ListRef<db_Synonym>',
+			'_tables' => 'grt::ListRef<db_Table>',
+			'_views' => 'grt::ListRef<db_View>',
+		],
+	],
+	'db_Tablespace' => [
+		'extends' => 'db_DatabaseObject',
+		'properties' => [
+			'_autoExtendSize' => 'grt::IntegerRef',
+			'_dataFile' => 'grt::StringRef',
+			'_extentSize' => 'grt::IntegerRef',
+			'_initialSize' => 'grt::IntegerRef',
+			'_logFileGroup' => 'db_LogFileGroupRef',
+			'_maxSize' => 'grt::IntegerRef',
+		],
+	],
+	'db_LogFileGroup' => [
+		'extends' => 'db_DatabaseObject',
+		'properties' => [
+			'_initialSize' => 'grt::IntegerRef',
+			'_undoBufferSize' => 'grt::IntegerRef',
+			'_undoFile' => 'grt::StringRef',
+		],
+	],
+	'db_User' => [
+		'extends' => 'db_DatabaseObject',
+		'properties' => [
+			'_password' => 'grt::StringRef',
+			'_roles' => 'grt::ListRef<db_Role>',
+		],
+	],
+	'db_Role' => [
+		'extends' => 'db_DatabaseObject',
+		'properties' => [
+			'_childRoles' => 'grt::ListRef<db_Role>',
+			'_parentRole' => 'db_RoleRef',
+			'_privileges' => 'grt::ListRef<db_RolePrivilege>',
+		],
+	],
+	'db_DatabaseDdlObject' => [
+		'extends' => 'db_DatabaseObject',
+		'properties' => [
+			'_definer' => 'grt::StringRef',
+			'_sqlBody' => 'grt::StringRef',
+			'_sqlDefinition' => 'grt::StringRef',
+		],
+	],
+	'db_Event' => [
+		'extends' => 'db_DatabaseDdlObject',
+		'properties' => [
+			'_at' => 'grt::StringRef',
+			'_enabled' => 'grt::IntegerRef',
+			'_interval' => 'grt::StringRef',
+			'_intervalEnd' => 'grt::StringRef',
+			'_intervalStart' => 'grt::StringRef',
+			'_intervalUnit' => 'grt::StringRef',
+			'_preserved' => 'grt::IntegerRef',
+			'_useInterval' => 'grt::IntegerRef',
+		],
+	],
+	'db_Trigger' => [
+		'extends' => 'db_DatabaseDdlObject',
+		'properties' => [
+			'_enabled' => 'grt::IntegerRef',
+			'_event' => 'grt::StringRef',
+			'_ordering' => 'grt::StringRef',
+			'_otherTrigger' => 'grt::StringRef',
+			'_timing' => 'grt::StringRef',
+		],
+	],
+	'db_Routine' => [
+		'extends' => 'db_DatabaseDdlObject',
+		'properties' => [
+			'_routineType' => 'grt::StringRef',
+			'_sequenceNumber' => 'grt::IntegerRef',
+		],
+	],
+	'db_View' => [
+		'extends' => 'db_DatabaseDdlObject',
+		'properties' => [
+			'_algorithm' => 'grt::IntegerRef',
+			'_columns' => 'grt::StringListRef',
+			'_isReadOnly' => 'grt::IntegerRef',
+			'_oldModelSqlDefinition' => 'grt::StringRef',
+			'_oldServerSqlDefinition' => 'grt::StringRef',
+			'_withCheckCondition' => 'grt::IntegerRef',
+		],
+	],
+];
