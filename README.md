@@ -1,7 +1,8 @@
 # MySQL Workbench reverse code
-Generate a stub-like of structs.h
-All the files to be generated are already in /data/
-This repository is used to update/patch model of mwb-dom
+## Generate a stub-like of structs.h
+ - All the files to be generated are already in /data/
+ - This repository is used to update/patch model of mwb-dom
+ - This repository is used to maintain model of mwb-dom
 
 # require
  - LLVM
