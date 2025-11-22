@@ -1,0 +1,21 @@
+{
+    "name": "mysql-workbench/mwb-reverse-engineering",
+    "description": "Generate mwb-dom from MySQL Workbench source code",
+    "version": "1.0.0",
+    "type": "library",
+    "license": "GPL-3.0",
+    "autoload": {
+        "psr-4": {
+            "Mwb\\ReverseEngineering\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "SVGAnimate",
+            "email": "glash.gnome@gmail.com"
+        }
+    ],
+    "require": {
+        "laminas/laminas-code": "^4.16"
+    }
+}
